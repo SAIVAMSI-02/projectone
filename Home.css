@@ -1,0 +1,201 @@
+body{  /* body tag annitiki parent so adi selecting */
+    font-family: "Comfortaa", sans-serif; /* body lo unna anni elements ki font apply avtadhi google fonts nunchi copy chesaam */
+}
+.parent{ 
+    position:relative;
+    border: 1px black solid; /* border istunamm */
+    height:100vh;  /*border height screen height antha istunnam but a circle border crossed*/
+    overflow:hidden;  /*cross iyyina circle ni border looki unchutunnam,crossed means overflow iyyinadhani hide chestunnam  */
+    display: flex;  /* equal vertical horizontal middle lo untaadhi */
+    align-items: center;  /* center lo matter ostadhi Hello enter ur name aney matter  */
+}
+.solid-circle{
+    height:990px;
+    width:990px;
+    background: red;  /*circle background kosam istunam square ochindhi */
+    border-radius: 50%;   /*square form iyyindhi dhanini circle laa maarustunnam using radius*/
+    position:absolute; /*circle piki vachestadi back naa white layer untadhi mundhuna cicle layer untaadhi that is 2 layers  */
+    right: -495px;  /* circle ni total pixels 990 ki half 495 chesi -px istunnam so half circle right side looki potaadhi  */
+    top : -120px;  /* top nunchi circle lopaliki vellali so -px istunnam -120px istey top & down equal ga lopalki veltundhi  */
+    z-index:1 ;
+}
+.header-home{
+    display: flex;  /* header pakkaki velpotaadhi  */
+    justify-content: space-between;  /* 2 elements tiskunnam expense tracker heading left side potadhi and button right side potadi middle lo space ostadhi */
+    position: absolute;  /* button ni separate 3rd layer chestaadhi because 2 layers unnai  white parent and circle ,circle back na button undhi so button circle medha raavataniki using absolute */
+    z-index: 2;  /* absoulute use chestey z-index use cheyyali mandatory */
+    width: 100%; /* new width ivvali vera layer kadha */
+    top: 20px; /* top nunchi 10px gap iccham  */
+    padding: 0px 80px; /* vertical padding updown 0px and left right 25px gaps */
+}
+#click-here-button{
+    background-color: white;  /* button white color background */
+    color:black;  /*button name black color */
+    font-size: large;  /* btn size large */
+    font-weight: 600;  /* lopala letter size penchutunnam */
+    box-shadow: 4px 4px 2px rgba(0,0,0,0.50);/* a button ki shadow padelaa chestunnam y parameter x parameter antha spread kavali a color kavali(color antha bright kavali)  */
+
+}
+#Name{
+    color:darkred;
+    font-size: 150px;
+}
+.form-floating{
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.25);
+    border-radius: 8px; /* label edges lo curve laa ostadhi sharp edges pothaayi */
+}
+#login-button{
+    background:red;
+    color:white;
+    padding: 5px 15px;
+}
+.main-content{ /* mana main content loopala unnavaatiki left nunchi space iccham */
+    margin-left:200px;
+}
+
+/* @media sizes big to small isteney work avtaayi */
+@media (max-width: 1024px) {
+  .solid-circle {
+    height: 650px;
+    width: 650px;
+    right: -325px;
+    top: -180px;
+  }
+}
+@media only screen and (max-width: 768px) /* Responsive design kosam breakpoints range between 768px untey loopala code work avtadhi*/
+{
+    .solid-circle{
+        background: black;
+        height:400px;
+        width:400px;
+        right:-150px;
+        top:-110px;
+    }
+    #Name{
+        color:black;
+    }
+    .main-content{
+        font-size: xx-large;
+        padding-right:185px;
+    }
+    .main-content-text{
+        font-size: xx-large;
+        padding-right: 500px;
+    }
+    #login-button{
+        font-size: xx-large;
+        background: black;
+        color: aliceblue;
+        margin-top: 50px;
+    }
+    #floatingInput{
+        font-size: medium;
+    }
+    .parent{
+        align-items: center;
+    }
+    .header-home{
+        padding-top: 30px;
+    }
+    #click-here-button{
+        font-size: x-large;
+    }
+    .header-home h5{
+         font-size: xx-large;
+         justify-content: space-between;
+    }
+    .form-floating{
+    width: 450px;
+    margin-top: 20px;
+}
+.main-content{ /* mana main content loopala unnavaatiki left nunchi space iccham */
+    margin-left:150px;
+    margin-top: 50px;
+}
+}
+@media (max-width: 600px) {
+  .main-content {
+    font-size: x-large;
+    font-weight: 100;
+    margin-left: 40px;
+    padding-top: 20px;
+  }
+
+  #Name {
+    font-size: 76px;
+  }
+
+  #click-here-button {
+    font-size: smaller;
+    width: 42%;
+    height: 50px;
+  }
+
+  .solid-circle {
+    height: 300px;
+    width: 300px;
+    right: -110px;
+    top: -110px;
+  }
+
+  .header-home {
+    margin-top: 20px;
+    margin-left: 40px;
+    width: 76%;
+    top: 30px;
+    padding: 0;
+  }
+
+  .form-floating {
+    width: 100%;
+    max-width: 350px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .solid-circle {
+    right: -80px;
+    top: -120px;
+  }
+
+  #click-here-button {
+    width: 50%;
+  }
+}
+
+@media (max-width: 400px) {
+  .solid-circle {
+    right: -100px;
+    top: -140px;
+  }
+}
+
+@media (max-width: 360px) {
+  .main-content {
+    margin-left: 20px;
+  }
+
+  .header-home {
+    margin-left: 20px;
+  }
+
+  .form-floating {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  #click-here-button {
+    width: 62%;
+    height: 50px;
+  }
+
+  .solid-circle {
+    right: -120px;
+    top: -140px;
+  }
+
+  #Name {
+    font-size: 55px;
+  }
+}

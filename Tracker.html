@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet"  href="./Tracker.css"> <!-- css file ni link chesaam -->
+</head>
+  <body>
+
+
+    <div class="header"> <!--web page lo unna starting name expense tracker-->
+        <p class="m-0">Expense<br>Tracker <img src="./spending.png" alt="" width="25px"> <!--by default margin untaadhi m-0 use chesi margin tesesaam-->
+        </p>
+    </div>
+    <div class="input-form"> <!--idi input form class,3 fields unnayi-->
+      <div class="form-floating inputs">
+        <input type="date" class="form-control dateInput" id="floatinginput" placeholder="dd-mm-yyyy">
+    <label for="floatingInput">Date</label>
+  
+</div>
+        <div class="form-floating inputs">
+          <input type="text" class="form-control amountInput" id="floatingInput" placeholder="Enter Amount Here">
+    <label for="floatingInput">Amount</label>
+</div>
+<select class="form-select inputs transactionType" aria-label="Default select example"> <!-- idi drop down list-->
+  <option selected>Transaction Type</option>
+  <option value="income">Income</option>
+  <option value="expense">Expense</option>
+</select>
+
+<button class="btn" id="add-button" onclick="addrow()"> + </button>  <!-- + btn create chesaam js lo event istunnam onclick,btn click chestey addrow() call avtadhi-->
+    </div>
+
+
+<div class="cards mt-4"> <!--cards parent element dhantlo 3 elements untaai , mt-4 antey margin top gap ostadhi-->
+<div class="card" >
+  <div class="card-body">
+    <h5 class="card-title m-0">   Total Income <img src="./wallet-filled-money-tool.png"alt=""width="25px">
+    </h5><br>
+    <h1 class="m-0">
+        <img src="./currency (2).png"alt=""width="40px">
+        <span id="total-income" class="m-0">0</span>
+    </h1>
+  </div>
+</div>
+<div class="card" >
+  <div class="card-body">
+    <h5 class="card-title m-0">  Total Expense <img src="./expenses.png"alt=""width="25px">
+    </h5><br>
+    <h1 class="m-0">
+        <img src="./currency (2).png"alt=""width="40px">
+        <span id="expense" class="m-0">0</span>
+    </h1>
+    
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title m-0">  </h5>
+    <h5 class="card-title m-0">   Balance <img src="./rupee.png"alt=""width="25px">
+    </h5><br>
+    <h1 class="m-0">
+        <img src="./currency (2).png"alt=""width="40px">
+        <span id="balance" class="m-0">0</span>
+    </h1>   
+  </div>
+</div>
+</div>
+
+
+<!--ippudu transaction table create chestunnam with id name table that is used in below js-->
+<table class="transaction-table mt-4" id="table"> 
+    <tr id="header-row">
+<th>Amount</th>
+<th>Transaction Type</th>
+<th>Transaction Date</th>
+<th>Action</th>
+    </tr>
+</table>  
+
+<!--js code starts from here-->
+<script>
+
+  let table=document.getElementById('table') //table ni access chesam using table id name
+  console.log("Table: ",table); // table ni chupistadhi without any function call on without any event
+
+// dustbin btn click chestey e function call avtadhi  
+
+function deleterow(row) // dustbin btn click chesina row ni parameter laa func ki pass chestunnam
+{
+
+  let amount=parseInt(row.children[0].innerText); // accessing amount from row and making as integer
+  let transactiontypes=row.children[1].innerText; // accessing amount from row and making as integer
+let totalincomed=document.getElementById('total-income').innerText  // totalincome card lopala value ni access chestundhi 
+let totalexpensed=document.getElementById('expense').innerText  // totalexpense card lopala value ni access chestundhi 
+let balanced=document.getElementById('balance').innerText  // balance card lopala value ni access chestundhi 
+console.log("Line 101: ",totalincomed,totalexpensed,balanced);
+if(transactiontypes=='income'){
+  document.getElementById('total-income').innerText=parseInt(totalincomed)-parseInt(amount)
+  document.getElementById('balance').innerText=parseInt(balanced)-parseInt(amount)
+}
+else{
+  document.getElementById('expense').innerText=parseInt(totalexpensed)-parseInt(amount)
+  document.getElementById('balance').innerText=parseInt(balanced)+parseInt(amount)
+} 
+   row.remove(); // pass chesina row ni removw chestunnam
+
+}
+
+function addrow()
+{    // + btn click chestey e function call avtadhi
+
+  let date=document.getElementsByClassName('dateInput')[0].value  //date input field ni access chesi a value ni date aney variable ki assign chestunnam 0th element antey 1st element
+  let amount=document.getElementsByClassName('amountInput')[0].value  //amount input field ni access chesi a value ni amount aney variable ki assign chestunnam
+  let transactiontype=document.getElementsByClassName('transactionType')[0].value  //transaction type input field ni access chesi a value ni transactiontype aney variable ki assign chestunnam
+console.log("Line 100: ", date,amount,transactiontype);   //user ki kanipinchataniki use chestunnam
+
+// table loopala date amount transactiontype access chesi vaati values yenni untey anni print chestunam remember:-tag names ni elements ga lopala istaam
+
+let row=document.createElement('tr') // row aney element create chesam 
+ 
+let amountcell=document.createElement('td') // td table cell data ki element create chesam with name amountcell
+amountcell.innerText=amount;  // create chesina amount cell lopala amount value ni pampincham daniki .innerText ni use chestam
+
+let transactioncell=document.createElement('td') // td table cell data ki element create chesam with name transactioncell
+transactioncell.innerText=transactiontype;  // create chesina transaction cell lopala transactiontype value ni pampincham daniki .innerText ni use chestam
+
+let datecell=document.createElement('td') // td table cell data ki element create chesam with name datecell
+datecell.innerText=date;  // create chesina amount cell lopala amount value ni pampincham daniki .innerText ni use chestam
+
+let bincell=document.createElement('td') // td bincell aney oka element create chesam
+let deletebutton=document.createElement('button') // button aney oka element create chesaam
+let binimage=document.createElement('img') // img element created
+binimage.src='./recycle-bin.png' // img element lopala img src pettam
+binimage.style.width='25px' // img ki width icham
+binimage.style.height='25px' //img ki height icham  
+
+deletebutton.appendChild(binimage)  //binimage parent is deletebutton so appended
+//button ki already styling ichesaam so a styles ni access chestam using :- classList.add(classname)
+deletebutton.classList.add('delete-button') //classList anaganey a particular button cls styles anevi deletebutton ki add avtayi
+
+// dustbin button click chesteney function call avvali so event listener add cheyali using arrow function syntax:- ()=> and a row ni arg la func ki send cheyali
+
+deletebutton.onclick=()=>deleterow(row) // dustbin click chesina row arg la passing so a row matramey removing 
+
+
+bincell.appendChild(deletebutton); // deletebutton aney element ni td bincell lopala pedtunnam becoz bincell is parent of deletebutton
+
+
+console.log("Line 120: ",amountcell,transactioncell,datecell); //table loopala values ni print chestunnam
+
+// values elements ni create chesaam a values td anevi tr childs , tr is parent of above 4 td elements so,appendChild(elementname) method use chesi childs ni add cheyochu
+ 
+row.appendChild(amountcell)
+row.appendChild(transactioncell)
+row.appendChild(datecell)
+row.appendChild(bincell)
+
+// row anedhi td ki parent element alaney table is parent element of row so appendChild(row) into table
+
+table.appendChild(row)
+
+
+// cards loopala values ni change cheytaniki condition rastunnam
+
+let totalincome=document.getElementById('total-income').innerText  // totalincome card lopala value ni access chestundhi 
+let totalexpense=document.getElementById('expense').innerText  // totalexpense card lopala value ni access chestundhi 
+let balance=document.getElementById('balance').innerText  // balance card lopala value ni access chestundhi 
+console.log("Line 157: ",totalincome,totalexpense,balance);
+
+//cards lopala values display cheytaniki condition write
+// NOTE :- By default ga js lo values string format lo untaayi dhanini integer lo convert cheskovali using parseInt()
+
+if (transactiontype == 'income')
+{
+  if(totalincome=="0"){
+    document.getElementById('total-income').innerText=amount // amount ni text la lopala show chestadhi
+  }
+  else{
+    document.getElementById('total-income').innerText=parseInt(totalincome)+parseInt(amount) // already amount untey a amount ni card lopala value tho add chestunnam
+  }
+  if(balance=="0"){
+    document.getElementById('balance').innerText=amount  // balance 0 untey type chesina amount ni display chestadhi
+  }
+  else{
+    document.getElementById('balance').innerText=parseInt(balance)+parseInt(amount) // balance loo 0 lekpotey unna amount tho add cheyu
+  }
+}
+else if (transactiontype=="expense"){
+  if(totalexpense=="0"){
+    document.getElementById('expense').innerText=amount // amount ni text la lopala show chestadhi
+  }
+  else{
+    document.getElementById('expense').innerText=parseInt(totalexpense)+parseInt(amount) // already amount untey a amount ni card lopala value tho add chestunnam
+  }
+  if(balance=="0"){
+    document.getElementById('balance').innerText=amount  // balance 0 untey type chesina amount ni display chestadhi
+  }
+  else{
+    document.getElementById('balance').innerText=parseInt(balance)-parseInt(amount) // balance loo 0 lekpotey unna balance nunchi amount ni minus doing becoz it is expenses
+  }
+}}
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+</body>
+</html>

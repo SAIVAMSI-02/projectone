@@ -1,0 +1,114 @@
+body{  /* body tag annitiki parent so adi selecting */
+    font-family: "Comfortaa", sans-serif; /* body lo unna anni elements ki font apply avtadhi google fonts nunchi copy chesaam */
+}
+.header{ /*expense tracker is heading */
+    background:#0532c9;
+    color:white;
+    padding-left: 25px ; /* lopala left side space ostadhi */
+    font-size: x-large; 
+}
+.input-form{
+    display: flex; /*3 fields anni pakkaki ostaayi */
+    justify-content: space-around; /* space around means elements and both corners lo kuda space istadhi */
+    width: 90%; 
+    margin: auto;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25);
+    margin-top: 20px; /* margin top lo space ostadhi so header nunchi separate avtadhi */
+    padding: 25px 0px;
+}
+#add-button{
+    background: #0532c9;
+    width:50px;
+    height:50px;
+    font-size: x-large;
+    border-radius: 50%; /* btn chuttu circle tayaravtaadhi */
+    color:white;
+}
+.inputs{ /* 3 input fields same width ichaam */
+    width: 30%;
+}
+.cards{
+    display: flex;  /* 3 cards same line lo ostaayi */
+    width:90%;
+    justify-content: space-between;
+    margin:auto;
+    margin-top: 20px;
+}
+.card{  /* card anedhi 3 cards ki common class */
+    background:#0532c9;
+    border: 0px;
+    height: 150px;
+    width:18rem;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+.card-body{
+    color:white;
+}
+.transaction-table{ /* idi transaction-table oka class */
+    border:1px solid black;
+    width:90%;
+    margin-top: 20px;
+    margin:auto;
+    border-radius: 8px;
+    overflow: hidden; /* table edges curve raledhu so idi rasaanu */
+    font-weight: 800; /* table lopala words boldness increase avtaadhi */
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.5);
+    padding: 0px;
+    text-align: center;
+}
+#header-row{ /* table header row ki color giving */
+    background:#0532c9;
+}
+#header-row th{ /* table header row lo unna each cell ni access chestunnam */
+    padding:15px 15px;
+    color:white;
+}
+.delete-button,.delete-button:hover
+{ /* table lo unna dustbin bomma ki styling */
+    background:red;
+    border:none;
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+    text-align: center;
+}
+@media only screen and (max-width: 768px) /* Responsive design kosam breakpoints range between 768px untey loopala code work avtadhi*/
+{
+    .cards{
+    justify-content: space-between;
+    flex-wrap:wrap; /* a space loo pattevi unchi remaining kindhaki send chestadhi */
+    margin:auto;
+    width:90%;
+    gap:10px; /* lopala unna all child elements ki a gap apply avtadhi */
+}
+.card{  /* card anedhi 3 cards ki common class */
+    background:black;
+    border: 0px;
+    height: 150px;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+.header{
+    background: black;
+}
+.input-form{
+     display: flex; /*3 fields anni pakkaki ostaayi */
+     flex-direction: column; /* oka dani kindha another ostaadhi */
+    align-items: center;
+    gap:15px; /* lopala unna all child elements ki a gap apply avtadhi */
+}
+.inputs{
+    width:75%; /* lopala unna all fields ki width apply avtadhi */
+}
+#add-button{
+    background: black;
+    width:75%;
+    border-radius: 8px; 
+}
+#header-row{ /* table header row ki color giving */
+    background:black;
+}
+}
